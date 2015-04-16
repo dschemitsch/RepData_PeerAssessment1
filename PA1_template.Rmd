@@ -1,5 +1,4 @@
 ---
-<<<<<<< HEAD
 title: "PA1_template.html"
 output: html_document
 ---
@@ -32,11 +31,11 @@ print(steps)
 Create histogram of the total number of steps taken each day (each column represents the frequency of that bin of steps).
 
 
-```{r}
+```{r, fig.height=7, fig.width=7}
 hist(as.numeric(steps[,2]), breaks = 10, 
 main = "Histogram of total steps taken each day", 
 xlab = "Total steps taken each day",
-col = "red",
+col = "red", 
 labels = TRUE)
 ```
 
@@ -154,29 +153,3 @@ Comparing the plots visually, we can see some differences between the weekday an
 
 * more steps taken on weekdays in intervals 500 to 1000 than on the weekends. 
 * generally more steps taken on weekends in intervals 1000 to 2400 than on the weekdays.
-=======
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
----
-
-
-## Loading and preprocessing the data
-
-
-
-## What is mean total number of steps taken per day?
-
-
-
-## What is the average daily activity pattern?
-
-
-
-## Imputing missing values
-
-
-
-## Are there differences in activity patterns between weekdays and weekends?
->>>>>>> 80edf39c3bb508fee88e3394542f967dd3fd3270

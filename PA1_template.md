@@ -31,11 +31,11 @@ print(steps)
 Create histogram of the total number of steps taken each day (each column represents the frequency of that bin of steps).
 
 
-```{r}
+```{r, fig.height=7, fig.width=7}
 hist(as.numeric(steps[,2]), breaks = 10, 
 main = "Histogram of total steps taken each day", 
 xlab = "Total steps taken each day",
-col = "red",
+col = "red", 
 labels = TRUE)
 ```
 
