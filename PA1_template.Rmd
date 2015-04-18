@@ -1,11 +1,12 @@
----
-title: "PA1_template.html"
-output: html_document
----
-##Loading and preprocessing the data  
+Peer Assessment 1
+==========================================
+
+
+
+## Loading and preprocessing the data  
 Load necessary packages.
 
-```{r, echo=FALSE}
+```{r, results="hide"}
 require(data.table)
 require(dplyr)
 require(ggplot2)
@@ -18,7 +19,7 @@ Read in the data, omitting the missing data.
 activity <- na.omit(read.csv("./activity.csv"))
 ```
 
-##What is mean total number of steps taken per day?
+## What is mean total number of steps taken per day?
 
 Summarize the data to determine the total number of steps taken by date.
 
@@ -46,7 +47,7 @@ mean(as.numeric(steps[,2]))
 median(as.numeric(steps[,2]))
 ```
 
-#What is the average daily activity pattern?
+# What is the average daily activity pattern?
 
 Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 
@@ -57,7 +58,7 @@ steps2 <- as.data.frame(activity %>% group_by(interval) %>% summarize(mean(steps
 colnames(steps2) <- c("interval","meansteps")
 ```
 
-Then, plot the aggregated time series data. The vertical green line represents the max value.
+Then, plot the aggregated time series data. The vertical yellow line represents the max value.
 
 ```{r}
 y <- ggplot(steps2, aes(x = interval, y = meansteps)) + 
@@ -66,7 +67,7 @@ y <- ggplot(steps2, aes(x = interval, y = meansteps)) +
     ggtitle("Mean number of steps taken per interval")
       
 y + geom_line(size = 1) + 
-geom_vline(xintercept = arrange(steps2, desc(meansteps))[1,1], color = "green", size = 1)
+geom_vline(xintercept = arrange(steps2, desc(meansteps))[1,1], color = "yellow", size = 1)
 ```
 
 Find the interval with the max number of steps.
@@ -75,7 +76,7 @@ Find the interval with the max number of steps.
 arrange(steps2, desc(meansteps))[1,1]
 ```
 
-#Impute missing values
+# Impute missing values
 
 Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
 
@@ -121,15 +122,15 @@ median(as.numeric(steps3[,2]))
 
 After replacing the missing data, the mean value stays the same and the median value changes slightly. The histogram with imputed missing values show that the middle bin has values now - the other bins aren't affected.
 
-#Are there differences in activity patterns between weekdays and weekends?
+# Are there differences in activity patterns between weekdays and weekends?
 
 Determine whether each day is a weekday (TRUE) or not (FALSE).
 
-```{r}
+```{r, results='hide'}
 activity2[,weekday:=isWeekday(date)]
 ```
 
-Summarize data by interval and weekday Vs. weenend and relabel True/False values as "Weekend" or "Weekday".
+Summarize data by interval and weekday vs. weekend and relabel True/False values as "Weekend" or "Weekday".
 
 ```{r}
 activity_w <- activity2[, mean(steps), by = list(interval, weekday)]
